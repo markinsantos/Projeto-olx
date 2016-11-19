@@ -14,10 +14,6 @@ import com.olx.dominio.Usuario;
 public class usuario_dao {
 	
 	
-	/*public usuario_dao(Session sessao){
-		this.sessao = sessao;
-	}*/
-	
 	
 	
 	public void salvar(Usuario usuario){
@@ -104,5 +100,42 @@ public class usuario_dao {
 			}
 	}
 		
+		
+		public void editar(Usuario usuario){
+			Session sessao = HibernateUtil.getSessionFactory().openSession();
+			Transaction tran = null;
+			try {
+				tran = sessao.beginTransaction();
+				sessao.update(usuario);
+				tran.commit();
+			} catch (Exception e) {
+				if(tran!= null){
+					tran.rollback();
+				}
+				System.out.println("erro ao salvar");
+			}finally {
+				sessao.close();
+			}
+			
+			
+		}
+		
+		public Usuario autenticar(String email, String senha){
+			Session sessao = HibernateUtil.getSessionFactory().openSession();
+			Usuario usuario  = null;
+			try {
+				Query consulta = sessao.getNamedQuery("Usuario.autenticar");
+				consulta.setString("email",email);
+				consulta.setString("senha",senha);
+				usuario = (Usuario) consulta.uniqueResult();
+			} catch (RuntimeException ex) {
+				throw ex;
+			}finally {
+				sessao.close();
+			}
+			
+			return usuario;
+			
+		}
 		
 }

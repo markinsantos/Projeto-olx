@@ -7,21 +7,29 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "usuario")
 @NamedQueries({ 
 	@NamedQuery(name = "Usuario.listar", query = "SELECT usuario FROM Usuario usuario"),
-	@NamedQuery(name ="Usuario.buscar",query ="SELECT usuario FROM Usuario usuario WHERE usuario.id = :id")
+	@NamedQuery(name ="Usuario.buscar",query ="SELECT usuario FROM Usuario usuario WHERE usuario.id = :id"),
+	@NamedQuery(name = "Usuario.autenticar", query = "SELECT usuario FROM Usuario usuario WHERE usuario.email = :email AND usuario.senha = :senha")
 })
 public class Usuario {
 
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotEmpty (message = "campo obrigatorio")
 	private String nome;
+	@NotEmpty(message = "campo obrigatorio")
+	@Email
 	private String email;
+	@NotEmpty
 	private String senha;
-	private int tipo;
+
 
 	public Long getId() {
 		return id;
@@ -55,18 +63,13 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-
+	
+	
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", tipo=" + tipo
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha +""
 				+ "]";
 	}
+	
 
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="metadata">
+		<f:event listener="#{anuncioBean.listar}" type="preRenderView" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputText style="text-align:center"
+			value="Bem-vindo à OLX!
+Aqui é rápido e fácil pra comprar e desapegar." />
+		<h:form id="formPrincipal">
+			<p:dataGrid var="anuncio" value="#{anuncioBean.listaAnuncio}"
+				columns="3" layout="grid"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="6,12,16">
+
+				<f:facet name="header">
+            Bem-vindo à OLX!
+Aqui é rápido e fácil pra comprar e desapegar.
+        </f:facet>
+
+				<p:panel header="#{anuncio.id}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+
+						<h:outputText value="#{anuncio.nome}" />
+						<h:outputText value="#{anuncio.descricao}" />
+						<h:outputText value="#{anuncio.valor}" />
+					</h:panelGrid>
+				</p:panel>
+
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

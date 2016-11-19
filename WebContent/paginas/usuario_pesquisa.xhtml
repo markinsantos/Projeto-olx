@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="metadata">
+	<f:event listener="#{usuarioBean.listar}" type="preRenderView" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<h:panelGrid columns="4">
+				<p:outputLabel value="Nome:" />
+				<p:inputText maxlength="50" size="30" />
+				<p:commandButton value="Pesquisar" />
+				<p:button value="Novo" outcome="/paginas/usuario_cadastro.xhtml" />
+			</h:panelGrid>
+			<p:dataTable emptyMessage="nenhuma registro encontrado"
+				value="#{usuarioBean.listaUsuario}"
+				filteredValue="#{usuarioBean.listaUsuFiltro}" var="usuario" rows="3"
+				paginator="true">
+				<p:column headerText="Nome" filterBy="#{usuario.nome}"
+					sortBy="#{usuario.nome}">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+
+				<p:column headerText="E-mail">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
