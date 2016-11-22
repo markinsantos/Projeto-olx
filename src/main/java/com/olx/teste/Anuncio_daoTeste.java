@@ -17,7 +17,7 @@ public class Anuncio_daoTeste {
 		usuario_dao ud = new usuario_dao();
 		Usuario usu = ud.buscar(2L);
 		Anuncio a1 = new Anuncio();
-		a1.setValor(new BigDecimal(68));
+		a1.setValor(68);
 		a1.setNome("bicicleta monark");
 		a1.setDescricao("produto x");
 		a1.setUsuario(usu);

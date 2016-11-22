@@ -65,8 +65,9 @@ public class Anuncio {
 	public BigDecimal getValor() {
 		return valor;
 	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setValor(int valor) {
+	 	BigDecimal valor1 =	 new BigDecimal(valor);
+		this.valor = valor1;
 	}
 	public String getDescricao() {
 		return descricao;
