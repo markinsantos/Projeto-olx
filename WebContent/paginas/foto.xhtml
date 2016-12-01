@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="metadata">
+		<f:event listener="#{anuncioBean.listar}" type="preRenderView" />
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form>
+			<p:dataScroller var="anuncio" value="#{anuncioBean.listaAnuncio}"
+				chunkSize="50">
+				<f:facet name="header">
+           			 Anuncios
+        		</f:facet>
+        		<p:separator></p:separator>
+				<h:panelGrid columns="2" style="width:100%"
+					columnClasses="logo,detail">
+					
+					<p:graphicImage cache="false" height="60" width="100"
+						url="http://localhost:8097/uploads/#{anuncio.imagem}.jpg" />
+
+					<p:outputPanel>
+					
+						<h:panelGrid columns="2" cellpadding="5">
+							<f:facet name="header">
+								<h:outputText value="Id:" />
+								<h:outputText value="#{anuncio.nome}" style="font-weight: bold" />
+							</f:facet>
+							<h:outputText value="Year:" />
+							<h:outputText value="#{anuncio.descricao}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Color:" />
+							<h:outputText value="#{anuncio.valor}" style="font-weight: bold" />
+							<p:commandButton value="teste" actionListener="#{anuncioBean.Anuncio}"/>
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:panelGrid>
+
+			</p:dataScroller>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

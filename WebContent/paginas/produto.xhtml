@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="metadata">
+		<f:event listener="#{produtobean.carregar()}" type="preRenderView" />
+		<f:event listener="#{anuncioBean.listar}" type="preRenderView" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText
+						value="Detalhes do Anuncio #{produtobean.publicaCadastro.nome}" />
+				</f:facet>
+
+			</p:toolbar>
+			<div align="left" class="box">
+				<p:graphicImage cache="false" height="300" width="400"
+					url="http://localhost:8097/uploads/#{produtobean.publicaCadastro.imagem}.jpg" />
+			</div>
+			<div align="right" class="box2">
+				<h:form>
+					<h:panelGrid columns="2" style="width:100%"
+						columnClasses="logo,detail" >
+
+						<p:outputPanel >
+
+							<h:panelGrid columns="2" cellpadding="5">
+								<f:facet name="header">
+									<p:outputLabel value="Contato: " />
+									<p:outputLabel value="#{produtobean.publicaCadastro.contato}"
+										style="font-weight: bold" />
+								</f:facet>
+								<p:outputLabel value="Descrição:" />
+								<p:outputLabel value="#{produtobean.publicaCadastro.descricao}"
+									style="font-weight: bold" />
+
+								<h:outputText value="Preço:" />
+								<h:outputText value="#{produtobean.publicaCadastro.valor}"
+									style="font-weight: bold" />
+
+							</h:panelGrid>
+						</p:outputPanel>
+					</h:panelGrid>
+
+				</h:form>
+			</div>
+		</h:form>
+		
+		<div  class="box3">
+		<h:form>
+		<p:outputLabel value="Perguntas ao vendedor"/>
+			<p:inputTextarea rows="4" cols="43" counter="display" maxlength="250"
+				counterTemplate="{0} Caracteres restantes" autoResize="false" value="#{comentarioBean.comentario.comentario}"/>
+			
+			<h:outputText id="display" />
+		<p:commandButton value="Enviar" actionListener="#{comentarioBean.salvar(produtobean.publicaCadastro)}" update="msgGlobal"/>
+		<h:form id="form">
+    <p:dataTable value="#{anuncioBean.listaAnuncio}" var="anuncio">
+    <p:column>
+   <h:outputText value="#{anuncio.nome}" />
+    </p:column>
+      
+    </p:dataTable>
+ 	</h:form>
+    	</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
