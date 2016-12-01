@@ -16,21 +16,25 @@
 
 			</p:toolbar>
 			<h:panelGrid columns="2">
-			<p:outputLabel value="Email:" />
-			<p:inputText maxlength="50" size="30" value="#{loginBean.usuarioLogado.email}">
-				<f:validateBean></f:validateBean>
-			</p:inputText>
+				<p:outputLabel value="Email:" />
+				<p:inputText maxlength="50" size="30"
+					value="#{loginBean.usuarioLogado.email}">
+					<f:validateBean></f:validateBean>
+				</p:inputText>
 
-			<p:outputLabel value="Senha:" />
-			<p:password maxlength="8" size="30" value="#{loginBean.usuarioLogado.senha}">
-				<f:validateBean></f:validateBean>
-			</p:password>
+				<p:outputLabel value="Senha:" />
+				<p:password maxlength="8" size="30"
+					value="#{loginBean.usuarioLogado.senha}">
+					<f:validateBean></f:validateBean>
+				</p:password>
 			</h:panelGrid>
-			<h:panelGrid>
-			<p:commandButton value="Entrar" action="#{loginBean.acessar}"
+			<h:panelGrid columns="2">
+				<p:commandButton value="Entrar" action="#{loginBean.acessar}"
 					update="msgGlobal" />
+				<p:commandButton value="sair" update="msgGlobal" />
 			</h:panelGrid>
-
+			<p:link outcome="/paginas/usuario_cadastro.xhtml"
+				value="Ainda não tenho cadastro" />
 		</h:form>
 	</ui:define>
 </ui:composition>

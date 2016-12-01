@@ -4,3 +4,39 @@
 	
 	font-size: 90% !important;
 }
+
+a:link {
+	background: #0080c0;
+	color: #000000;
+	text-decoration: none;
+	font-weight: bold;
+	border-width: 2px;
+	border-style: solid;
+	border-top-color: #0000ff;
+	border-right-color: #0000ff;
+	border-bottom-color: #0000ff;
+	border-left-color: #0000ff;
+
+}
+
+div.box {
+		height: 300px;
+		width: 400px;
+		border: 3px solid black;
+		background: orange;
+		float: left;
+	}
+	
+div.box2 {
+		height: 310px;
+		width: 406px;
+	
+		float: right;
+	}
+	
+div.box3 {
+		height: 150px;
+		width: 400px;
+		float: left;
+		border: 3px solid black;
+	}

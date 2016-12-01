@@ -34,6 +34,8 @@ public class Anuncio {
 	private Long id;
 	@NotEmpty (message = "o campo preço e obrigatorio")
 	private String nome;
+	@NotEmpty (message = "campo obrigatorio")
+	private String imagem;
 	
 	@NotNull (message = "o campo preço e obrigatorio")
 	@DecimalMin(value = "0.00", message = "informe um valor valido")
@@ -48,6 +50,7 @@ public class Anuncio {
 	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn (name = "id_usuario",referencedColumnName = "id",nullable = false)
 	private Usuario usuario;
+	
 	
 	
 	public Long getId() {
@@ -65,9 +68,8 @@ public class Anuncio {
 	public BigDecimal getValor() {
 		return valor;
 	}
-	public void setValor(int valor) {
-	 	BigDecimal valor1 =	 new BigDecimal(valor);
-		this.valor = valor1;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -88,6 +90,15 @@ public class Anuncio {
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
+	
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Anuncio [id=" + id + ", nome=" + nome + ", valor=" + valor + ", descricao=" + descricao + ", contato="

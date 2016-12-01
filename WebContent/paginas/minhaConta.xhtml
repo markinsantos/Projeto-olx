@@ -31,7 +31,7 @@
 			emptyMessage="Todos os seus anúncios serão listados aqui. Você ainda não possui nenhum anúncio.
 		Para inserir um anúncio é muito fácil: clique no botão abaixo e insira agora mesmo."
 			value="#{anuncioBean.listaAnuncio}"
-			filteredValue="#{usuarioBean.listaUsuFiltro}" var="anuncio" rows="3"
+			filteredValue="#{usuarioBean.listaUsuFiltro}" var="anuncio" rows="5"
 			paginator="true">
 			<p:column headerText="Titulo" filterBy="#{usuario.nome}"
 				sortBy="#{usuario.nome}" layout="grid">
@@ -39,8 +39,9 @@
 			</p:column>
 			
 			<p:column headerText="Imagens">
-			<p:graphicImage cache="false" height="60" width="60"></p:graphicImage>
-			
+				<p:graphicImage cache="false" height="60" width="60"
+					url="http://localhost:8097/uploads/#{anuncio.imagem}.jpg"></p:graphicImage>
+
 			</p:column>
 
 			<p:column headerText="Preço">
@@ -53,7 +54,14 @@
 			<p:column headerText="Contato">
 				<h:outputText value="#{anuncio.contato}" />
 			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton value="Editar"/>
+				<p:commandButton value="Excluir"/>
+			
+			</p:column>
 		</p:dataTable>
+		<p:commandButton value="Sair" action="#{loginBean.sair()}"
+					update="msgGlobal" />
 	</ui:define>
 </ui:composition>
 </html>

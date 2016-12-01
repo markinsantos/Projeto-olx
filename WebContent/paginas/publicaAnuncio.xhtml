@@ -7,15 +7,19 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="/templates/modelo.xhtml">
-	<ui:define name="conteudo"> 
-		<h:form id="frmAnuCad">
-			<p:toolbar >
+	<ui:define name="conteudo">
+		<h:form id="frmAnuCad"  enctype="multipart/form-data">
+			<p:toolbar>
 				<f:facet name="left">
-					<h:outputText value="Inserir Anuncios"  />
-				</f:facet>
-			</p:toolbar>
-			<h:panelGrid id="limpaAnuncio" columns="2">
+					<h:outputText value="Inserir Anuncios" />
 
+				</f:facet>
+
+			</p:toolbar>
+
+			<h:panelGrid id="limpaAnuncio" columns="2">
+				<h:outputText value="Ola! Bem vindo(a)," />
+				<h:outputText value="#{loginBean.usuarioLogado.nome}" />
 				<p:outputLabel value="titulo:" />
 				<p:inputText maxlength="50" size="30"
 					value="#{anuncioBean.publicaCadastro.nome}">
@@ -39,16 +43,20 @@
 					value="#{anuncioBean.publicaCadastro.contato}">
 					<f:validateBean></f:validateBean>
 				</p:inputText>
+				
+				<p:outputLabel for="foto:" value="foto"/>
+				<p:fileUpload id="foto" mode="advanced" fileUploadListener="#{anuncioBean.upload}"/>
+				
 
 			</h:panelGrid>
 			<h:panelGrid columns="3">
 				<p:commandButton value="limpar"
-					actionListener="#{anuncioBean.salvar}"
+					actionListener="#{anuncioBean.limpar()}"
 					update=":frmAnuCad:limpaAnuncio" />
 				<p:commandButton value="Salvar"
-					actionListener="#{anuncioBean.salvar}"
+					actionListener="#{anuncioBean.adicionar(loginBean.usuarioLogado)}"
 					update="msgGlobal frmAnuCad:limpaAnuncio" />
-				<p:button value="Voltar" outcome="/paginas/usuario_pesquisa.xhtml" />
+				<p:button value="Voltar" outcome="/paginas/minhaConta.xhtml" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

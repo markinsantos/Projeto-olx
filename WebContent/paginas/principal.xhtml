@@ -11,30 +11,34 @@
 		<f:event listener="#{anuncioBean.listar}" type="preRenderView" />
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:outputText style="text-align:center"
-			value="Bem-vindo à OLX!
-Aqui é rápido e fácil pra comprar e desapegar." />
+
 		<h:form id="formPrincipal">
 			<p:dataGrid var="anuncio" value="#{anuncioBean.listaAnuncio}"
-				columns="3" layout="grid"
+				columns="2" layout="grid" paginator="true"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="6,12,16">
+				rowsPerPageTemplate="4,12,16">
 
 				<f:facet name="header">
-            Bem-vindo à OLX!
-Aqui é rápido e fácil pra comprar e desapegar.
-        </f:facet>
+					<h:outputText style="text-align:center"
+						value="Bem-vindo à OLX! Aqui é rápido e fácil pra comprar e desapegar." />
+				</f:facet>
 
-				<p:panel header="#{anuncio.id}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%">
-
-						<><h:outputText value="#{anuncio.nome}" />
-						<h:outputText value="#{anuncio.descricao}" />
+				<p:panel header="#{anuncio.nome}" style="text-align:center">
+					<h:panelGrid columns="2" style="width:100%">
+						<p:graphicImage cache="false" height="60" width="100"
+							url="http://localhost:8097/uploads/#{anuncio.imagem}.jpg"/>
+						<h:outputText value="#{anuncio.descricao}" style="width: 100px;" />
+						<p:outputLabel/>
 						<h:outputText value="#{anuncio.valor}" />
+						<p:button value="Mais Detalhes" outcome="/paginas/produto.xhtml">
+						<f:param name="codigo2" value="#{anuncio.id}"/>
+						</p:button>
+						
 					</h:panelGrid>
 				</p:panel>
-
 			</p:dataGrid>
+	<h:commandButton actionListener="#{anuncioBean.Anuncio(anuncio)}"
+							value="Mais Detalhes" />
 		</h:form>
 	</ui:define>
 </ui:composition>

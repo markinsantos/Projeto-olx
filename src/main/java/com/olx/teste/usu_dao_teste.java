@@ -11,12 +11,11 @@ import com.olx.dominio.Usuario;
 public class usu_dao_teste {
 	
 	@Test
-	@Ignore
 	public void salvar(){
 		Usuario u1 = new Usuario();
-		u1.setEmail("marcos");
-		u1.setNome("marcos@marcos");
-		u1.setSenha("marcos123");
+		u1.setEmail("marcos@gmail.com");
+		u1.setNome("marcos santos");
+		u1.setSenha("12345");
 		
 		
 		usuario_dao ud= new usuario_dao();

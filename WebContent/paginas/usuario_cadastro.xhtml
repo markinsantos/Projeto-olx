@@ -8,6 +8,11 @@
 
 <ui:composition template="/templates/modelo.xhtml">
 	<ui:define name="conteudo">
+	<p:toolbar>
+			<f:facet name="left">
+				<h:outputText value="Criar conta" />
+			</f:facet>
+		</p:toolbar>
 		<h:form id="frmUsuCad">
 			<h:panelGrid id="limpaUsuario" columns="2">
 
@@ -37,7 +42,7 @@
 				<p:commandButton value="Salvar"
 					actionListener="#{usuarioBean.salvar()}"
 					update="msgGlobal :frmUsuCad:limpaUsuario" />
-				<p:button value="Voltar" outcome="/paginas/usuario_pesquisa.xhtml" />
+				<p:button value="Voltar" outcome="/paginas/principal.xhtml" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

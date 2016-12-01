@@ -18,12 +18,19 @@
 
 		<p:layoutUnit position="north" size="150"
 			header=" Anúncios Classificados Grátis na olx" resizable="false">
-			<h:form>
-				<p:graphicImage library="imagens" name="images.png" />
-				<p:button value="INSERIR ANUNCIOS" outcome="/paginas/login.xhtml"/>
-			</h:form>
+			<div align="center">
+				<h:form>
+					<p:graphicImage library="imagens" name="images.png" height="77"
+						width="400" />
+					<h:panelGrid columns="3">
+						<p:link outcome="/paginas/login.xhtml" value="INSERIR ANUNCIOS" />
+						<p:link outcome="/paginas/usuario_cadastro.xhtml" value="AINDA NÃO TENHO CADASTRO"/>
+						<p:link outcome="/paginas/principal.xhtml" value="Home"/>
+				
+					</h:panelGrid>
+				</h:form>
 
-
+			</div>
 		</p:layoutUnit>
 
 		<p:layoutUnit position="south"
@@ -32,23 +39,39 @@
 
 		</p:layoutUnit>
 
-		<p:layoutUnit position="west" size="200" header="categorias"
+		<p:layoutUnit position="west" size="200" header="Buscar"
 			resizable="true">
-			<p:panelMenu>
-
-			</p:panelMenu>
-
+			<h:form>
+				<p:panelMenu>
+					<p:submenu label="Por categorias">
+						<p:menuitem value="Celulares e Eletrônicos" />
+						<p:menuitem value="Veiculos e Barcos" />
+						<p:menuitem value="Moda e beleza" />
+						<p:menuitem value="Imoveis" />
+					</p:submenu>
+					<p:submenu label="Por faixa de preços">
+						<p:menuitem value="de 0,00 R$ a 100,00 R$" />
+						<p:menuitem value="de 100,00 R$ a 500,00 R$" />
+						<p:menuitem value="de 500,00 R$ a 1000,00 R$" />
+						<p:menuitem value="+ de 1000 R$" />
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
 		</p:layoutUnit>
 
-		<p:layoutUnit position="east" size="100" header="" resizable="true"
+		<p:layoutUnit position="east" size="200" resizable="true"
 			effect="drop">
+
+
+			<p:graphicImage library="imagens" name="olx2.gif" height="350"
+				width="200" />
 
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center">
-		<div align="center">
-			<ui:insert name="conteudo" />
-		</div>	
+			<div align="center">
+				<ui:insert name="conteudo" />
+			</div>
 		</p:layoutUnit>
 
 

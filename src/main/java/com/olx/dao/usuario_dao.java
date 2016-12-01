@@ -30,8 +30,7 @@ public class usuario_dao {
 			System.out.println("erro ao salvar");
 		}finally {
 			sessao.close();
-		}
-		
+		}	
 		
 	}
 	
